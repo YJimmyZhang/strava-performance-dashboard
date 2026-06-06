@@ -25,10 +25,11 @@ running performance.
 - Dashboard: Streamlit, Plotly, Folium
 
 ## Project Structure
+```
 strava-performance-dashboard/
 ├── data/
-│   ├── raw/          ← Strava export, Whoop CSVs (gitignored)
-│   └── processed/    ← cleaned, merged dataframes (gitignored)
+│   ├── raw/          
+│   └── processed/    
 ├── notebooks/
 │   ├── 01_exploration.ipynb
 │   ├── 02_feature_engineering.ipynb
@@ -41,6 +42,7 @@ strava-performance-dashboard/
 │   └── app.py
 ├── requirements.txt
 └── README.md
+```
 
 
 ## Status
