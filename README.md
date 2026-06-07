@@ -18,9 +18,8 @@ https://strava-performance-dashboard-tdwmgbmwjgzkhmwb8jmhry.streamlit.app/
 
 ## Models
 - **XGBoost** — pace and race time predictor from training + biometric features
-- **LSTM** — HR efficiency trend smoothing and fitness trajectory forecasting
-- **Holt-Winters (exponential smoothing)** - HR Efficiency Forecasting
-- **Run Type Classifier** 
+- **Holt-Winters (exponential smoothing)** — HR efficiency trend smoothing and fitness trajectory forecasting
+- **Run Type Classifier** (in development)
 
 ## Stack
 - **Data:** Python, Pandas, stravalib, Whoop API
