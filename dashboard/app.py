@@ -10,6 +10,7 @@ import xgboost as xgb
 from sklearn.preprocessing import MinMaxScaler
 from statsmodels.tsa.holtwinters import ExponentialSmoothing
 import os
+import gdown
 
 # --- Page config ---
 st.set_page_config(
@@ -17,6 +18,24 @@ st.set_page_config(
     page_icon="🏃",
     layout="wide"
 )
+
+
+def download_data():
+    files = {
+        "data/processed/activities_final.csv": "1qckcdwt54WD5Hs0LRoQ7OqDNOLFKxP6c",
+        "data/raw/gps_streams.csv": "12RB_OYtPI6ZQPLNc8gkBxcv42hgB5FmY",
+        "data/raw/whoop_recovery.csv": "1SpERRylSMN2Ny5auzB09nUYzHf_89aNU",
+        "data/raw/whoop_sleep.csv": "1qSzFUkaohzxKJnwgT8lljrGx4Jr9o78y",
+    }
+    
+    os.makedirs("data/processed", exist_ok=True)
+    os.makedirs("data/raw", exist_ok=True)
+    
+    for path, file_id in files.items():
+        if not os.path.exists(path):
+            gdown.download(f"https://drive.google.com/uc?id={file_id}", path, quiet=False)
+
+download_data()
 
 # --- Load data ---
 @st.cache_data
