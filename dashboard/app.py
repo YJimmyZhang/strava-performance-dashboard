@@ -211,7 +211,6 @@ elif page == "HR Efficiency":
     forecast = model_hw.forecast(16)
     mae = np.mean(np.abs(forecast.values - test.values))
 
-    st.metric("MAE", f"{mae:.4f} m/min/bpm")
 
     fig2 = go.Figure()
     fig2.add_trace(go.Scatter(
@@ -225,6 +224,8 @@ elif page == "HR Efficiency":
         line=dict(color="red", dash="dash")))
     fig2.update_layout(title="HR Efficiency ")
     st.plotly_chart(fig2, use_container_width=True)
+
+    st.metric("MAE", f"{mae:.4f} m/min/bpm")
 
 # --- Heatmap Page ---
 elif page == "Heatmap":
