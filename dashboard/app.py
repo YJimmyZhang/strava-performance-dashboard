@@ -162,14 +162,14 @@ elif page == "Training Load":
     fig.update_layout(title="Training Load Over Time")
     st.plotly_chart(fig, use_container_width=True)
 
-    fig2 = px.line(df_plot, x=df_plot.index, y="acwr_smooth",
-                   title="Acute:Chronic Workload Ratio",
-                   labels={"acwr_smooth": "ACWR"})
-    fig2.add_hline(y=1.5, line_dash="dash", line_color="red",
-                   annotation_text="Injury risk")
-    fig2.add_hline(y=0.8, line_dash="dash", line_color="orange",
-                   annotation_text="Undertraining")
-    st.plotly_chart(fig2, use_container_width=True)
+    # fig2 = px.line(df_plot, x=df_plot.index, y="acwr_smooth",
+    #                title="Acute:Chronic Workload Ratio",
+    #                labels={"acwr_smooth": "ACWR"})
+    # fig2.add_hline(y=1.5, line_dash="dash", line_color="red",
+    #                annotation_text="Injury risk")
+    # fig2.add_hline(y=0.8, line_dash="dash", line_color="orange",
+    #                annotation_text="Undertraining")
+    # st.plotly_chart(fig2, use_container_width=True)
 
 # --- HR Efficiency Page ---
 elif page == "HR Efficiency":
