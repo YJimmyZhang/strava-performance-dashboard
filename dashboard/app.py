@@ -59,6 +59,13 @@ df = load_data()
 gps = load_gps()
 recovery, sleep = load_whoop()
 
+# --- Filter Date Range ---
+# Ensure the date column is in datetime format
+df['date'] = pd.to_datetime(df['date'])
+
+# Filter data to start from 01 Feb 2023
+df = df[df['date'] >= '2023-02-01']
+
 # --- Sidebar ---
 st.sidebar.title("🏃 Running Dashboard")
 st.sidebar.markdown("Personal athlete monitoring system")
@@ -83,8 +90,6 @@ if page == "Overview":
     st.title("🏃 Running Performance Dashboard")
     st.markdown("Personal athlete monitoring system — Strava + Whoop 5.0")
     
-   
-
     # Add to Overview page after the metrics
     st.subheader("🏆 Personal Bests")
     col1, col2, col3, col4 = st.columns(4)
@@ -108,13 +113,12 @@ if page == "Overview":
     col3.metric("Half Marathon", pace_to_time(best_hm, 21.0975))
     col4.metric("Marathon", pace_to_time(best_marathon, 42.195))
 
-     # Top metrics
+    # Top metrics
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Total Runs", len(df))
     col2.metric("Total Distance", f"{df['distance_km'].sum():.0f} km")
     col3.metric("Avg Pace", f"{df['pace_min_per_km'].mean():.2f} min/km")
     col4.metric("Avg HR", f"{df['avg_hr'].mean():.0f} bpm")
-
 
     # Weekly mileage
     df["week"] = df["date"].dt.to_period("W").dt.start_time
