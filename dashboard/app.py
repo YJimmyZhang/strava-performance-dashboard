@@ -176,7 +176,7 @@ elif page == "HR Efficiency":
     st.title("❤️ HR Efficiency")
     st.markdown("Speed per heartbeat — a proxy for cardiovascular fitness")
 
-    df_easy = df[(df["avg_hr"].notna()) & (df["avg_hr"] < 155)].copy()
+    df_easy = df[(df["avg_hr"].notna()) & (df["avg_hr"] < 190)].copy()
     df_easy["speed_m_per_min"] = (df_easy["distance_km"] * 1000) / (df_easy["duration_sec"] / 60)
     df_easy["hr_efficiency"] = df_easy["speed_m_per_min"] / df_easy["avg_hr"]
     df_easy = df_easy[df_easy["hr_efficiency"] < 1.5].copy()
@@ -189,7 +189,7 @@ elif page == "HR Efficiency":
                              mode="markers", opacity=0.3, name="Individual runs"))
     fig.add_trace(go.Scatter(x=weekly["week"], y=weekly["hr_efficiency"],
                              name="Weekly avg", line=dict(color="blue", width=2)))
-    fig.update_layout(title="HR Efficiency Over Time (easy runs)")
+    fig.update_layout(title="HR Efficiency Over Time")
     st.plotly_chart(fig, use_container_width=True)
 
     # Forecast
@@ -274,14 +274,14 @@ elif page == "Models":
     - Heart rate is the dominant predictor, followed by chronic training load and elevation
     """)
 
-    st.subheader("Model 3 — HR Efficiency Forecasting")
+    st.subheader("Model 2 — HR Efficiency Forecasting")
     st.markdown("""
     - **Holt-Winters exponential smoothing** with additive trend
     - **MAE = 0.089 m/min/bpm**
     - Captures long-term fitness trend but underestimates post-race recovery dips
     """)
 
-    st.subheader("Model 5 — Readiness Score")
+    st.subheader("Model 3 — Readiness Score")
     st.markdown("""
     - **XGBoost vs Whoop black-box comparison**
     - Training load outweighs all biometric signals combined
