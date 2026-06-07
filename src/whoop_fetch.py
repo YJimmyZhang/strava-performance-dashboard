@@ -58,20 +58,18 @@ def fetch_all_pages(endpoint):
     return results
 
 def fetch_recovery():
-    records = fetch_all_pages("cycle")  # recovery is inside cycle in v2
+    records = fetch_all_pages("recovery")
     rows = []
     for r in records:
-        recovery = r.get("recovery", {})
-        score = recovery.get("score", {}) if recovery else {}
+        score = r.get("score", {}) or {}
         rows.append({
-            "date": r.get("start")[:10] if r.get("start") else None,
+            "date": r.get("created_at", "")[:10],
+            "cycle_id": r.get("cycle_id"),
             "recovery_score": score.get("recovery_score"),
             "hrv_rmssd": score.get("hrv_rmssd_milli"),
             "resting_hr": score.get("resting_heart_rate"),
             "skin_temp_celsius": score.get("skin_temp_celsius"),
             "spo2_pct": score.get("spo2_percentage"),
-            "strain": r.get("score", {}).get("strain"),
-            "avg_hr": r.get("score", {}).get("average_heart_rate"),
         })
     return pd.DataFrame(rows)
 
