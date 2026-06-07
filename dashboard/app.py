@@ -230,7 +230,7 @@ elif page == "Heatmap":
     centre_lng = gps["lng"].median()
 
     m = folium.Map(location=[centre_lat, centre_lng],
-                   zoom_start=13, tiles="CartoDB dark_matter")
+                   zoom_start=13, tiles="CartoDB.Positron")
     HeatMap(gps[["lat", "lng"]].values.tolist(),
             radius=8, blur=10, min_opacity=0.3).add_to(m)
     folium_static(m, width=1200, height=600)
